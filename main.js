@@ -116,23 +116,6 @@ const cards =[
 ];
 
 
-// creo un nuovo array filtrando per tipo
-
-let prova = cards[0];
-
-console.log(prova)
-
-// const filtrati = cards.filter((element) => {
-// 	if(element.type == "user"){
-// 		return true
-// 	}else{
-// 		return false
-// 	}
-// });
-
-console.log(cards)
-
-// creo la variabile per riferirmi al container 
 
 const container = document.getElementById("container");
 
@@ -143,15 +126,16 @@ let content = "";
 
 function showCards(array){
 
-	for(let i=0;i < cards.length; i++){
-		let card = cards[i];
+	for(let i=0;i < array.length; i++){
+		let card = array[i];
 		
-		container.innerHTML += `<div class="card ">
-		<i class="color-${card.color} ${card.family} ${card.prefix}${card.name}"></i>
-		<p>${card.name}</p>
-		</div>`
+		content += `<div class="card ">
+					 <i class="color-${card.color} ${card.family} ${card.prefix}${card.name}"></i>
+					 <p>${card.name}</p>
+					</div>`
 	}
-	console.log(container);
+
+	container.innerHTML = content;
 	return true
 }
 
@@ -159,24 +143,37 @@ function showCards(array){
 
 let filter_type = document.getElementById("filter-type");
 
-const filtrati = cards.filter((element) => {
-	if(element.type == filter_type.value){
-		return true
-	}else{
-		return false
-	}
-}
-);
+showCards(cards);
+// const filtrati = cards.filter((element) => {
+// 	if(element.type == filter_type.value){
+// 		return true
+// 	}else{
+// 		return false
+// 	}
+// }
+// );
+
+
+
 
 filter_type.addEventListener("change" , function(){
-	const filtrati = cards.filter((element) => {
-		if(element.type == this.value){
-			return true
-		}else{
-			return false
-		}
-	});
-	showCards.filtrati;
+	
+	content = "";
+	if (this.value != "all"){
+
+		const filtrati = cards.filter((element) => {
+			
+			if(element.type == this.value){
+				console.log(element);
+				
+				return true
+			}
+		});
+		
+		showCards(filtrati)
+	}else{
+		showCards(cards);
+	}
 }
 
 
