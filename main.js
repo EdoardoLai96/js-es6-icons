@@ -160,22 +160,23 @@ function showCards(array){
 let filter_type = document.getElementById("filter-type");
 
 const filtrati = cards.filter((element) => {
-	if(element.type == this.type){
+	if(element.type == filter_type.value){
 		return true
 	}else{
 		return false
 	}
-});
+}
+);
 
 filter_type.addEventListener("change" , function(){
 	const filtrati = cards.filter((element) => {
-		if(element.type == this.type){
+		if(element.type == this.value){
 			return true
 		}else{
 			return false
 		}
 	});
-	console.log(filtrati)
+	showCards.filtrati;
 }
 
 
